@@ -5,6 +5,10 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all.page params[:page]
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   # GET /posts/1
