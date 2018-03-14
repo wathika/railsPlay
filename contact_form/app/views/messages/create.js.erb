@@ -1,0 +1,39 @@
+//REMOVE ANY PREVIOUS NOTICES
+$(".notice").remove();
+$(".form-group").removeClass("has-error");
+
+// //DISPLAY ERROR MESSAGES
+// $("#emailBlock").append('<div class="form-control-feedback><%=escape_javascript(@errorName[0])%></div>');
+// $("emailBlock:contains(.)").closest(".form-group").addClass("has-danger");
+//
+// $("#contentBlock").append('<div class="invalid-feedback"><%=escape_javascript(@errorContent[0])%></div>');
+// $("contentBlock:contains(.)").closest(".form-group").addClass("has-danger");
+
+var emailField = document.getElementById('emailField')
+var contentField = document.getElementById('contentField')
+
+var errorNameDiv = document.createElement('div')
+var errorContentDiv = document.createElement('div')
+errorNameDiv.className = "invalid-feedback"
+errorContentDiv.className = "invalid-feedback"
+
+errorNameDiv.innerHTML = '<%=escape_javascript(@errorName[0])%>'
+errorContentDiv.innerHTML = '<%=escape_javascript(@errorContent[0])%>'
+
+emailField.appendChild(errorNameDiv)
+contentField.appendChild(errorContentDiv)
+
+//DISPLAY SUCCESS MESSAGE
+$("#helpBlock").append('<div class="notice"><%=escape_javascript(flash.discard(:notice))%></div>');
+
+var email = document.getElementById('message_email')
+var textArea = document.getElementById('message_content')
+//RESET FORM IF MESSAGE SAVED
+<% if @resetForm == "1" %>
+$(".form-horizontal")[0].reset();
+  email.classList.remove('is-invalid')
+  textArea.classList.remove('is-invalid')
+<% else %>
+  email.classList.add('is-invalid')
+  textArea.classList.add('is-invalid')
+<% end %>

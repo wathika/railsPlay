@@ -1,0 +1,11 @@
+= form_for @message, html: {class: "form-horizontal"}, remote: true, novalidate: "" do |f|
+  .form-group
+    = f.label :email, "Email address:", class: "col-sm-2 control-label"
+    .col-sm-10#emailField
+      = f.email_field :email, class: "form-control", placeholder: "Email"
+  .form-group
+    = f.label :content, "Message", class: "col-sm-2 control-label"
+    .col-sm-10#contentField
+      = f.text_area :content, class: "form-control", rows: 5, :placeholder => "Your message"
+  =f.submit "Send message", class: "btn btn-primary", data: {disable_with: "Loading..."}, formnovalidate: ""
+  %span#helpBlock.help-block
